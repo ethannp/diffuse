@@ -26,6 +26,11 @@ db.ref("connected").on("value", (snap) => {
 })
 db.ref("session/pagesVisible").on("value", (activePages) => {
     db.ref("session/content").once("value").then((snap) => {
+        if (!snap.val()) {
+            document.getElementById("wait").style.display = "block";
+            document.getElementById("status").textContent = "connected! waiting for content..."
+            return;
+        }
         let pages = snap.val().slice(1, activePages.val() + 1);
         let pagesNode = document.getElementById("pages");
         while (pages.length > page) {

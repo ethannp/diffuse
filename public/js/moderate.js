@@ -31,7 +31,7 @@ firebase.auth().onAuthStateChanged(user => {
 })
 
 db.ref("session/content").once("value", (content) => {
-    if (content) {
+    if (content.val()) {
         let pages = content.val().slice(1);
         numPages = pages.length;
         let pagesNode = document.getElementById("pages");
@@ -59,8 +59,16 @@ document.getElementById("right").addEventListener("click", function () {
 
 document.getElementById("addpg").addEventListener("click", function () {
     if (page < 20) {
+        saveContent();
         document.getElementById("pages").appendChild(getEditBoxElement(numPages, false));
         numPages++;
+    }
+})
+
+document.getElementById("reset").addEventListener("click", function () {
+    if (confirm("This action is irreversible!") == true) {
+        db.ref("session/content/").set({});
+        location.reload();
     }
 })
 
@@ -70,16 +78,7 @@ db.ref("session/pagesVisible").on("value", (activePages) => {
 });
 
 document.getElementById("save").addEventListener("click", function () {
-
-    let pagesNode = document.getElementById("pages");
-    let setObj = {};
-    for (let i = 0; i < pagesNode.children.length; i++) {
-        setObj[i+1] = {
-            title: document.getElementById(`input-${i}`).value,
-            text: document.getElementById(`text-${i}`).value
-        }
-    }
-    db.ref("session/content/").set(setObj);
+    saveContent();
     alert("Saved!");
 })
 
@@ -90,19 +89,69 @@ function getEditBoxElement(i, fetchData) {
 
     let number = document.createElement("span");
     number.classList.add("number");
+    number.classList.add("circlebtn");
     number.textContent = i + 1;
     box.appendChild(number);
 
     let del = document.createElement("span");
     del.classList.add("delete");
+    del.classList.add("circlebtn");
     del.textContent = "x";
     del.id = `x-${i}`
     del.addEventListener("click", function () {
-        if (confirm("Make sure you have saved your data before deleting any cards!") == true) {
-
+        if (confirm("Deleting a card is irreversible!") == true) {
+            let pagesNode = document.getElementById("pages");
+            let setObj = {};
+            for (let j = 0; j < pagesNode.children.length; j++) {
+                let id = -1;
+                if (i > j) {
+                    id = j;
+                } else if (i == j) {
+                    continue;
+                } else {
+                    id = j - 1;
+                }
+                setObj[id + 1] = {
+                    title: document.getElementById(`input-${j}`).value,
+                    text: document.getElementById(`text-${j}`).value
+                }
+            }
+            db.ref("session/content/").set(setObj);
+            db.ref("session/pagesVisible").set(0);
+            location.reload();
         }
     })
     box.appendChild(del);
+
+    if (i > 0) {
+        let swap = document.createElement("span");
+        swap.classList.add("circlebtn");
+        swap.classList.add("swap");
+        swap.textContent = "↕";
+        swap.addEventListener("click", function() {
+            let pagesNode = document.getElementById("pages");
+            let setObj = {};
+            for (let j = 0; j < pagesNode.children.length; j++) {
+                let id = -1;
+                if (i==j) {
+                    id = j-1;
+                } else if (j == i-1) {
+                    id = i;
+                } else {
+                    id = j;
+                } 
+                console.log(id);
+                setObj[id + 1] = {
+                    title: document.getElementById(`input-${j}`).value,
+                    text: document.getElementById(`text-${j}`).value
+                }
+            }
+            console.log(setObj);
+            db.ref("session/content/").set(setObj);
+            location.reload();
+        })
+        box.appendChild(swap);
+    }
 
     let input = document.createElement("input");
     input.placeholder = "Title goes here!";
@@ -128,4 +177,16 @@ function getEditBoxElement(i, fetchData) {
     box.appendChild(textarea);
 
     return box;
+}
+
+function saveContent() {
+    let pagesNode = document.getElementById("pages");
+    let setObj = {};
+    for (let i = 0; i < pagesNode.children.length; i++) {
+        setObj[i + 1] = {
+            title: document.getElementById(`input-${i}`).value,
+            text: document.getElementById(`text-${i}`).value
+        }
+    }
+    db.ref("session/content/").set(setObj);
 }
