@@ -31,15 +31,23 @@ db.ref("session/pagesVisible").on("value", (activePages) => {
         while (pages.length > page) {
             let box = document.createElement("div");
             box.classList.add("box");
-            if(pages[page].title) {
+            if (pages[page].title) {
                 let h2 = document.createElement("h2");
                 h2.textContent = pages[page].title;
                 h2.classList.add("boxtitle");
                 box.appendChild(h2);
             }
             let p = document.createElement("p");
-            p.innerHTML = pages[page].text;
+            p.innerHTML = DOMPurify.sanitize(marked.parse(pages[page].text));
             p.classList.add("boxcontent");
+            let nodes = p.querySelectorAll('a');
+            if (nodes) {
+                for (let i = 0; i < nodes.length; i++) {
+                    if (nodes[i].hostname != window.location.hostname) {
+                        nodes[i].target = '_blank';
+                    }
+                }
+            }
             box.appendChild(p);
             pagesNode.prepend(box);
             page++;
@@ -52,7 +60,6 @@ db.ref("session/pagesVisible").on("value", (activePages) => {
             document.getElementById("wait").style.display = "block";
             document.getElementById("status").textContent = "connected! waiting for content..."
         } else {
-            console.log("hey");
             document.getElementById("wait").style.display = "none";
             document.getElementById("status").textContent = ""
         }

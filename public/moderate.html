@@ -7,8 +7,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="moderate.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="js/purify.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Capriola&display=swap" rel="stylesheet">
 </head>
 
@@ -16,13 +19,26 @@
   <div id="header">
     <h1>moderate</h1>
   </div>
+  <div id="menu">
+    <button id="save" style="margin-top: 0px;" class="btn">save</button>
+    <button id="left" class="arrowbtn"><div class="arrowleft"></div></button>
+    <span id="page" style="font-size: 30px; width: 40px; bottom:8px; position: relative; display: inline-block;">#</span>
+    <button id="right" class="arrowbtn"><div class="arrowright"></div></button>
+    <br>
+  </div>
   <div id="content">
-    <button id="logout" class="btn">logout</button>
+    <div id="pages">
+    </div>
+    <button id="addpg" class="arrowbtn">+</button>
+    <div style="padding-top: 40px; padding-bottom: 70px;">
+      <button id="reset" class="btn">reset</button>
+      <button id="logout" class="btn">logout</button>
+    </div>
   </div>
   <div id="footer">
-    <a href="index.html">[ back to home ]</a>
+    <a class="bottomlink" href="index.html">[ back to home ]</a>
   </div>
-  
+
 
   <script defer src="/__/firebase/8.1.2/firebase-app.js"></script>
   <script defer src="/__/firebase/8.1.2/firebase-database.js"></script>
