@@ -1,0 +1,90 @@
+body {
+    background-color: #5E64D6;
+    font-family: 'Capriola';
+    color: white;
+}
+
+h1 {
+    color: white;
+    font-size: 50px;
+    text-align: center;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+#content {
+    max-width: 600px;
+    width: 90%;
+    margin:auto;
+}
+
+
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #6B81DA;
+    text-align: center;
+    color: white;
+    padding: 10px 0px;
+}
+
+input {
+    width: 180px;
+    margin: auto;
+    display: block;
+    margin-bottom: 10px;
+    height: 20px;
+    border-radius: 10px;
+    outline: none;
+    border: 3px #6B81DA solid;
+    font-family: 'Capriola';
+    font-size: 20px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.box {
+    margin: 10px auto;
+    border: 5px #8193db dotted;
+    margin: 15px 5px;
+    padding: 0px 10px;
+}
+
+#status {
+    text-align: center;
+}
+
+svg {
+    fill: #6B81DA;
+    width: 50%;
+    max-width: 400px;
+    min-width: 200px;
+    margin:auto;
+}
+
+.btn {
+    width: 100px;
+    margin: auto;
+    display: block;
+    height: 30px;
+    font-family: 'Capriola';
+    font-size: 20px;
+    outline: none;
+    background-color: #6B81DA;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin-top: 10px;
+    z-index: 10;
+}
+
+label {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
