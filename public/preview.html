@@ -2,14 +2,17 @@
 <html>
 
 <head>
-  <title>diffuse - login</title>
+  <title>diffuse - preview</title>
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="preview.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Capriola&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="js/purify.min.js"></script>
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -22,29 +25,27 @@
 
 <body>
   <div id="header">
-    <h1>login</h1>
+    <h1>preview</h1>
+  </div>
+  <div id="menu">
+    <button id="left" class="arrowbtn"><div class="arrowleft"></div></button>
+    <span id="page" style="font-size: 30px; width: 40px; bottom:8px; position: relative; display: inline-block;">#</span>
+    <button id="right" class="arrowbtn"><div class="arrowright"></div></button>
+    <br>
   </div>
   <div id="content">
-    <form method="dialog">
-      <label for="email">email</label>
-      <input type="email" id="email" class="input" autocomplete="email">
-      <label for="password">password</label>
-      <input type="password" id="password" class="input" autocomplete="current-password">
-      <br>
-      <button id="login" class="btn">login</button>
-    </form>
-    <br>
-    <p id="loginstatus" style="text-align: center;" hidden></p>
+    <div id="pages">
+
+    </div>
   </div>
   <div id="footer">
-    <a class="bottomlink" href="index.html">[ back to home ]</a>
+    <a class="bottomlink" href="moderate.html">[ moderate ]</a>
   </div>
-
 
   <script defer src="/__/firebase/8.1.2/firebase-app.js"></script>
   <script defer src="/__/firebase/8.1.2/firebase-database.js"></script>
   <script defer src="/__/firebase/8.1.2/firebase-auth.js"></script>
-  <script defer src="js/login.js"></script>
+  <script defer src="js/preview.js"></script>
 </body>
 
 </html>

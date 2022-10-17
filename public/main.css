@@ -1,3 +1,7 @@
+::selection {
+    background:#8193db
+}
+
 body {
     background-color: #5E64D6;
     font-family: 'Capriola';
@@ -41,7 +45,7 @@ a {
 }
 
 .input {
-    width: 180px;
+    width: 200px;
     margin: auto;
     display: block;
     margin-bottom: 10px;

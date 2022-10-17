@@ -1,0 +1,48 @@
+#menu {
+    z-index: 20;
+    margin: 10px auto 30px auto;
+    text-align: center;
+    position: sticky;
+    top: -5px;
+    height: 70px;
+    background-color: #4B50AB;
+    padding: 15px 0px 5px 0px;
+    width: 100%;
+    border-radius: 5px;
+    max-width: 1000px;
+}
+
+.arrowbtn {
+    width: 40px;
+    height: 40px;
+    background-color: #6B81DA;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Capriola';
+    display: inline;
+    margin-top: 10px;
+}
+
+.arrowleft {
+    width: 0;
+    height: 0;
+    padding-left: 2px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 20px solid white;
+}
+
+#pages {
+    margin-bottom: 30px;
+}
+
+.arrowright {
+    width: 0;
+    height: 0;
+    margin-left: 5px;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 20px solid white;
+}

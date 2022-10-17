@@ -66,10 +66,16 @@ document.getElementById("addpg").addEventListener("click", function () {
 })
 
 document.getElementById("reset").addEventListener("click", function () {
-    if (confirm("This action is irreversible!") == true) {
+    if (confirm("Warning: this action is irreversible! Are you sure you would like to reset everything?") == true) {
         db.ref("session/content/").set({});
+        db.ref("session/pagesVisible").set(0);
         location.reload();
     }
+})
+
+document.getElementById("preview").addEventListener("click", function () {
+    saveContent();
+    window.location.assign("preview.html");
 })
 
 db.ref("session/pagesVisible").on("value", (activePages) => {
@@ -79,7 +85,7 @@ db.ref("session/pagesVisible").on("value", (activePages) => {
 
 document.getElementById("save").addEventListener("click", function () {
     saveContent();
-    alert("Saved!");
+    alert("Changes were saved!");
 })
 
 function getEditBoxElement(i, fetchData) {

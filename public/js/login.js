@@ -17,10 +17,7 @@ firebase.auth().onAuthStateChanged(user => {
   if (user) {
     if (firebase.auth().currentUser.uid == "K5bJoTYHnsTeNcwzkj7LeKBBZJ22") {
       location = "moderate.html"
-    }
-  } else {
-      document.getElementById("loginstatus").hidden = false;
-      document.getElementById("loginstatus").textContent = "new users are not allowed at the moment";
+    } 
   }
 })
 
@@ -29,7 +26,7 @@ document.getElementById("login").addEventListener("click", function () {
   const email = document.getElementById('email').value;
   const pass = document.getElementById('password').value;
   const auth = firebase.auth();
-  auth.signInWithEmailAndPassword(email,pass)
+  auth.signInWithEmailAndPassword(email, pass)
     .then((user) => {
       location = "moderate.html";
     })
